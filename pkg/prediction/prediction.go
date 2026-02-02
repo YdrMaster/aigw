@@ -18,6 +18,7 @@ type TTFTPrediction interface {
 	Predict(input, cached int) float64
 	Train(input, cached int, y float64)
 	Clone() TTFTPrediction
+	Params() []float64
 }
 
 type RLS struct {
@@ -154,4 +155,8 @@ func (rls *RLS) Clone() TTFTPrediction {
 		copy(newRLS.p[i], rls.p[i])
 	}
 	return newRLS
+}
+
+func (rls *RLS) Params() []float64 {
+	return rls.params
 }
