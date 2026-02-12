@@ -137,3 +137,30 @@ func (r *TpotRecursiveLeastSquares) Clone() *TpotRecursiveLeastSquares {
 	}
 	return newRLS
 }
+
+// NewTpotRLSWithParams creates a new RLS instance with given parameters
+// params should have length 3: [coeff for x1, coeff for x2, constant]
+// This is used to create a prediction instance directly from trained parameters
+func NewTpotRLSWithParams(params []float64) *TpotRecursiveLeastSquares {
+	size := TPOT_COEFF_NUM + 1
+	theta := make([]float64, size)
+	// Ensure params length is 3
+	if len(params) >= size {
+		copy(theta, params[:size])
+	} else {
+		copy(theta, params)
+	}
+
+	// Initialize P matrix to allow subsequent Update() calls
+	P := make([][]float64, size)
+	for i := 0; i < size; i++ {
+		P[i] = make([]float64, size)
+		P[i][i] = 1e6
+	}
+
+	return &TpotRecursiveLeastSquares{
+		theta:  theta,
+		P:      P,
+		forget: 1.0,
+	}
+}
