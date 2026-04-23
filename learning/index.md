@@ -63,7 +63,7 @@
 | **技术框架** | HTNN（基于 Envoy Golang Filter 的扩展框架） |
 | **核心能力** | 智能路由、负载均衡、过载保护、延迟预测 |
 | **协议支持** | OpenAI HTTP / SSE、Triton gRPC |
-| **运行时** | Envoy（Standalone 或 Istio xDS 模式） |
+| **运行时** | Envoy（Standalone 或 [Istio](istio.md) xDS 模式） |
 | **开发语言** | Go 1.22 |
 
 ### 1.2 解决的核心问题
